@@ -8,8 +8,8 @@ import smtplib
 app = Flask(__name__)
 
 @app.route('/')
-def form():
-    return render_template('form.html')
+def index():
+    return render_template('index.html')
 
 @app.route('/submit', methods=["POST"])
 def submit():
@@ -17,8 +17,8 @@ def submit():
     text2 = request.form.get['Price']
     text3 = request.form.get['smsText']
     text4 = request.form.get['emailText']
-    dropdown1 = request.form.get['dropdown1']
-    dropdown2 = request.form.get['dropdown2']
+    dropdown1 = request.form.get['time']
+    dropdown2 = request.form.get['alert']
 
 
     if dropdown1 == '_15':
@@ -52,7 +52,7 @@ def submit():
     data = soup.find(id="quote-header-info")
     final_price = data.find("fin-streamer",class_="Fw(b) Fz(36px) Mb(-4px) D(ib)").getText()
 
-    print(final_price)
+    #print(final_price)
     content = "Your price threshold reached, i.e:"+ final_price
     if text2 == final_price:
         if dropdown2 == "email":
